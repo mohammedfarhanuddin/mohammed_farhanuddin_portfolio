@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Farhanuddin Times</title>
+    <style>
+        /* --- Google Fonts Import --- */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+        /* * --- Base & Body Styles --- 
+         * Sets the vintage newspaper look and feel.
+         * - Background: Off-white, sepia tone.
+         * - Typography: Classic serif fonts for readability and style.
+         */
+        :root {
+            --background-color: #f5f2e9;
+            --text-color: #3d3d3d;
+            --border-color: #c5bba8;
+            --headline-font: 'Playfair Display', serif;
+            --body-font: 'Merriweather', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--body-font);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        /* * --- Newspaper Header --- 
+         * Contains the main title and classic newspaper details.
+         */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double var(--text-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .newspaper-title {
+            font-family: var(--headline-font);
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .newspaper-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-style: italic;
+            border-top: 1px solid var(--text-color);
+            border-bottom: 1px solid var(--text-color);
+            padding: 5px 0;
+            margin-top: 10px;
+        }
+
+        /* * --- Main Content Grid --- 
+         * Uses CSS Grid to create a multi-column layout, which is the
+         * foundation of the newspaper design.
+         */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+        }
+
+        /* * --- Article Styles --- 
+         * Defines the look of each "news story" (i.e., portfolio section).
+         */
+        article {
+            padding: 15px;
+            border-radius: 3px;
+        }
+
+        article h2 {
+            font-family: var(--headline-font);
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        article p, article li {
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        
+        article ul {
+            list-style-position: inside;
+            padding-left: 10px;
+        }
+
+        /* * --- Image Styles ---
+         * Gives images a vintage, printed look.
+         */
+        .newspaper-img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            padding: 4px;
+            background-color: #fff;
+            filter: sepia(0.4) grayscale(0.2);
+            margin-bottom: 10px;
+        }
+        
+        figure {
+            margin: 20px 0;
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            font-style: italic;
+            text-align: center;
+            color: #666;
+        }
+
+
+        /* --- Specific Article Placement using Grid Columns --- */
+        
+        /* Lead Story: Spans a large portion of the top */
+        .lead-story {
+            grid-column: 1 / -1;
+            text-align: center;
+            border-bottom: 2px solid var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .lead-story h1 {
+            font-family: var(--headline-font);
+            font-size: 2.2rem;
+        }
+        .lead-story .byline {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Project Spotlight: Takes up the main left area */
+        .projects-section {
+            grid-column: 1 / 9;
+        }
+        .projects-section .project {
+            margin-bottom: 25px;
+            border-bottom: 1px dotted var(--border-color);
+            padding-bottom: 15px;
+        }
+        .projects-section .project:last-child {
+            border-bottom: none;
+        }
+        .projects-section h3 {
+            font-family: var(--headline-font);
+            font-size: 1.4rem;
+        }
+        .projects-section .tech-stack {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 0.9rem;
+            background-color: #e9e5d9;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Sidebar: Contains skills, education, and contact info */
+        .sidebar {
+            grid-column: 9 / -1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar-widget {
+             border: 1px solid var(--border-color);
+             padding: 15px;
+        }
+        .sidebar-widget h3 {
+            font-family: var(--headline-font);
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .sidebar-widget ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar-widget li {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .sidebar-widget a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .sidebar-widget a:hover {
+            text-decoration: underline;
+        }
+
+        /* * --- Responsive Design --- 
+         * On smaller screens (e.g., mobile), the grid collapses into a single
+         * column to ensure readability.
+         */
+        @media (max-width: 900px) {
+            .main-content, .projects-section, .sidebar {
+                grid-column: 1 / -1;
+            }
+            .newspaper-meta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="newspaper-header">
+        <h1 class="newspaper-title">The Farhanuddin Times</h1>
+        <div class="newspaper-meta">
+            <span>VOL. I, NO. 1</span>
+            <span>A MOHAMMED FARHANUDDIN PORTFOLIO</span>
+            <span>AUGUST 10, 2025</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Lead Story -->
+        <section class="lead-story">
+            <h1>Aspiring AI/ML Engineer Ready to Build the Future</h1>
+            <p class="byline">A Profile on Mohammed Farhanuddin's Journey into Tech</p>
+            <p>
+                With a strong foundation in machine learning, deep learning, and software development, Mohammed Farhanuddin is passionately driven to build scalable, intelligent solutions that solve real-world problems. Eager to contribute to innovative product development in a dynamic tech environment, he is seeking a challenging role to grow, learn, and make a meaningful impact.
+            </p>
+        </section>
+
+        <!-- Main Column with Projects -->
+        <section class="projects-section">
+            <article>
+                <h2>Project Spotlight: Engineering in Action</h2>
+                
+                <div class="project">
+                    <h3>Real-Time Face Recognition System</h3>
+                    <p>Engineered a real-time facial recognition model for institutional security. The system detects faces from a live video feed, draws bounding boxes, and accurately labels individuals as "recognized" or "unrecognized," providing instant identity verification and enhancing on-site security protocols.</p>
+                    <span class="tech-stack">Tech: Python, Flask, OpenCV</span>
+                </div>
+
+                <div class="project">
+                    <h3>Private Airline Management System</h3>
+                    <p>Developed a full-stack airline management web application featuring distinct, secure access for users and administrators. Users can search for and book flights, while administrators have a comprehensive dashboard to manage flight listings and view all user bookings, creating an efficient operational workflow.</p>
+                    <span class="tech-stack">Tech: HTML, PHP, CSS, SQL</span>
+                </div>
+
+                <div class="project">
+                    <h3>E-Medicine Sales System</h3>
+                    <p>Designed and built a digital platform to facilitate the purchase and distribution of pharmaceutical products. The system provides a robust backend to manage inventory and sales, demonstrating skills in database management and application logic for e-commerce solutions.</p>
+                    <span class="tech-stack">Tech: Java, SQL</span>
+                </div>
+
+                <figure>
+                     <!-- IMPORTANT: Replace the src below with the actual URL of your image -->
+                    <img src="https://placehold.co/600x400/f5f2e9/3d3d3d?text=MUN+Photo" alt="Mohammed Farhanuddin speaking at Model UN" class="newspaper-img" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f5f2e9/3d3d3d?text=Image+Not+Found';">
+                    <figcaption>Representing Russia in the Human Rights Council at KITS-W MUN.</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Sidebar with Skills, Education, etc. -->
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>The Journalist</h3>
+                <!-- IMPORTANT: Replace the src below with the actual URL of your image -->
+                <img src="https://placehold.co/400x400/f5f2e9/3d3d3d?text=Your+Headshot" alt="Mohammed Farhanuddin Headshot" class="newspaper-img" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f2e9/3d3d3d?text=Image+Not+Found';">
+                <p style="text-align:center;">Mohammed Farhanuddin</p>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Honors & Achievements</h3>
+                <ul>
+                    <li><strong>Best Delegate Award</strong><br>Human Rights Council, KITS-W MUN (Mar 2024)</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Technical Gazette</h3>
+                <ul>
+                    <li><strong>Languages:</strong> Python, Java, C</li>
+                    <li><strong>Web Tech:</strong> HTML, CSS, JavaScript, React, Node</li>
+                    <li><strong>Databases & Tools:</strong> SQL, Linux, Burp Suite, Metasploit</li>
+                    <li><strong>Core Concepts:</strong> Data Structures & Algorithms (DSA)</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Academic Chronicle</h3>
+                <ul>
+                    <li><strong>B.Tech, Computer Science (AI-ML)</strong><br>KITS-Warangal (2022-Present)</li>
+                    <li><strong>Intermediate (96.9%)</strong><br>Shine Junior College (2022)</li>
+                    <li><strong>SSC (10 CGPA)</strong><br>Shine High School (2020)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Certifications & Internships</h3>
+                 <ul>
+                    <li><strong>Internship:</strong> Real-Time Face Recognition at NIT-Suratkal (Forthcoming: Feb '25)</li>
+                    <li><strong>NPTEL:</strong> Database Management Systems</li>
+                    <li><strong>Cisco:</strong> Cybersecurity Essentials, Intro to Cybersecurity</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Contact & Enquiries</h3>
+                <p>For opportunities and collaborations:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:umarm8693@gmail.com">umarm8693@gmail.com</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:+919908135085">(+91) 9908135085</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </main>
+
+</body>
+</html>
